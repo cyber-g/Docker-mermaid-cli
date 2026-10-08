@@ -42,13 +42,15 @@ docker run --rm -v "$PWD:/data" --entrypoint make target_name docker-mermaid-cli
 
 Override the image entrypoint so the GitLab runner can execute its job shell, then invoke `mmdc` in the `script` section:
 
+The `-p` option points `mmdc` to Puppeteer's JSON configuration, which configures the browser used to render diagrams. The base image's entrypoint actually passes `/puppeteer-config.json`; because GitLab overrides that entrypoint (by setting it to an empty string), pass the option explicitly:
+
 ```yaml
 render:
   image:
     name: drdpham/docker-mermaid-cli:latest
     entrypoint: [""]
   script:
-    - mmdc -i diagram.mmd -o diagram.svg
+    - mmdc -p /puppeteer-config.json -i diagram.mmd -o diagram.svg
 ```
 
 ## Maintenance
