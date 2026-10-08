@@ -44,11 +44,11 @@ Override the image entrypoint so the GitLab runner can execute its job shell, th
 
 ```yaml
 render:
-	image:
-		name: drdpham/docker-mermaid-cli:latest
-		entrypoint: [""]
-	script:
-		- mmdc -i diagram.mmd -o diagram.svg
+  image:
+    name: drdpham/docker-mermaid-cli:latest
+    entrypoint: [""]
+  script:
+    - mmdc -i diagram.mmd -o diagram.svg
 ```
 
 ## Maintenance
